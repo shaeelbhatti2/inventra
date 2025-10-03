@@ -1,0 +1,10 @@
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 2rem;
+}
+
+.page main {
+    max-width: 960px;
+    margin: 0 auto;
+}
