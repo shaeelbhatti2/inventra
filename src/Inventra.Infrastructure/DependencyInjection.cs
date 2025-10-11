@@ -1,4 +1,6 @@
+using Inventra.Application.Abstractions;
 using Inventra.Infrastructure.Persistence;
+using Inventra.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,10 @@ public static class DependencyInjection
 
         services.AddDbContext<InventraDbContext>(options =>
             options.UseNpgsql(connectionString));
+
+        services.AddScoped<IStockLedgerRepository, StockLedgerRepository>();
+        services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+        services.AddScoped<IAuditRepository, AuditRepository>();
 
         return services;
     }
