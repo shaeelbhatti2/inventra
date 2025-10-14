@@ -1,3 +1,4 @@
+using Inventra.Application.Products;
 using Inventra.Application.Warehouses;
 using Inventra.Application.StockLedger;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ public static class DependencyInjection
         services.AddScoped<StockLedgerService>();
         services.AddScoped<WarehouseService>();
         services.AddScoped<LocationService>();
+        services.AddScoped<ProductService>();
         return services;
     }
 }
