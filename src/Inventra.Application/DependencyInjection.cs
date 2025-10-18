@@ -1,3 +1,5 @@
+using Inventra.Application.Abstractions;
+using Inventra.Application.Auth;
 using Inventra.Application.Products;
 using Inventra.Application.Warehouses;
 using Inventra.Application.StockLedger;
@@ -13,6 +15,8 @@ public static class DependencyInjection
         services.AddScoped<WarehouseService>();
         services.AddScoped<LocationService>();
         services.AddScoped<ProductService>();
+        services.AddScoped<JwtTokenService>();
+        services.AddSingleton<IAuthService, InMemoryAuthService>();
         return services;
     }
 }
