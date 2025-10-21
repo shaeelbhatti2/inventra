@@ -1,6 +1,7 @@
 using Inventra.Application.Abstractions;
 using Inventra.Application.Auth;
 using Inventra.Application.Products;
+using Inventra.Application.PurchaseOrders;
 using Inventra.Application.Warehouses;
 using Inventra.Application.StockLedger;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ public static class DependencyInjection
         services.AddScoped<ProductService>();
         services.AddScoped<JwtTokenService>();
         services.AddSingleton<IAuthService, InMemoryAuthService>();
+        services.AddScoped<PurchaseOrderService>();
         return services;
     }
 }
