@@ -19,6 +19,7 @@ public static class DependencyInjection
         services.AddScoped<JwtTokenService>();
         services.AddSingleton<IAuthService, InMemoryAuthService>();
         services.AddScoped<PurchaseOrderService>();
+        services.AddScoped<PurchaseOrderReceivingService>();
         return services;
     }
 }
