@@ -2,6 +2,7 @@ using Inventra.Application.Abstractions;
 using Inventra.Application.Auth;
 using Inventra.Application.Products;
 using Inventra.Application.PurchaseOrders;
+using Inventra.Application.SalesOrders;
 using Inventra.Application.Warehouses;
 using Inventra.Application.StockLedger;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ public static class DependencyInjection
         services.AddSingleton<IAuthService, InMemoryAuthService>();
         services.AddScoped<PurchaseOrderService>();
         services.AddScoped<PurchaseOrderReceivingService>();
+        services.AddScoped<SalesOrderService>();
         return services;
     }
 }
