@@ -3,6 +3,7 @@ using Inventra.Application.Auth;
 using Inventra.Application.Products;
 using Inventra.Application.PurchaseOrders;
 using Inventra.Application.SalesOrders;
+using Inventra.Application.Transfers;
 using Inventra.Application.Warehouses;
 using Inventra.Application.StockLedger;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,7 @@ public static class DependencyInjection
         services.AddScoped<PurchaseOrderReceivingService>();
         services.AddScoped<SalesOrderService>();
         services.AddScoped<AllocationService>();
+        services.AddScoped<TransferService>();
         return services;
     }
 }
