@@ -1,5 +1,6 @@
 using Inventra.Application.Abstractions;
 using Inventra.Application.Auth;
+using Inventra.Application.CycleCounts;
 using Inventra.Application.Products;
 using Inventra.Application.PurchaseOrders;
 using Inventra.Application.SalesOrders;
@@ -25,6 +26,7 @@ public static class DependencyInjection
         services.AddScoped<SalesOrderService>();
         services.AddScoped<AllocationService>();
         services.AddScoped<TransferService>();
+        services.AddScoped<CycleCountService>();
         return services;
     }
 }
