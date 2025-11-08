@@ -34,3 +34,24 @@ public sealed class CycleCountRepository : ICycleCountRepository
 
     public Task SaveChangesAsync(CancellationToken ct) => _db.SaveChangesAsync(ct);
 }
+
+public sealed class BatchLotRepository : IBatchLotRepository
+{
+    private readonly InventraDbContext _db;
+
+    public BatchLotRepository(InventraDbContext db) => _db = db;
+
+    public Task<BatchLot?> GetByLotNumberAsync(Guid organizationId, Guid variantId, string lotNumber, CancellationToken ct) =>
+        _db.BatchLots.FirstOrDefaultAsync(x =>
+            x.OrganizationId == organizationId &&
+            x.ProductVariantId == variantId &&
+            x.LotNumber == lotNumber.ToUpperInvariant(), ct);
+
+    public async Task<IReadOnlyList<BatchLot>> ListByVariantAsync(Guid organizationId, Guid variantId, CancellationToken ct) =>
+        await _db.BatchLots.Where(x => x.OrganizationId == organizationId && x.ProductVariantId == variantId).ToListAsync(ct);
+
+    public async Task AddAsync(BatchLot lot, CancellationToken ct) =>
+        await _db.BatchLots.AddAsync(lot, ct);
+
+    public Task SaveChangesAsync(CancellationToken ct) => _db.SaveChangesAsync(ct);
+}
