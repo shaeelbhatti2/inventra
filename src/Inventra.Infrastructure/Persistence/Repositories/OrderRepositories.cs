@@ -55,3 +55,18 @@ public sealed class BatchLotRepository : IBatchLotRepository
 
     public Task SaveChangesAsync(CancellationToken ct) => _db.SaveChangesAsync(ct);
 }
+
+public sealed class SerialNumberRepository : ISerialNumberRepository
+{
+    private readonly InventraDbContext _db;
+
+    public SerialNumberRepository(InventraDbContext db) => _db = db;
+
+    public Task<SerialNumber?> GetByNumberAsync(Guid organizationId, string number, CancellationToken ct) =>
+        _db.SerialNumbers.FirstOrDefaultAsync(x => x.OrganizationId == organizationId && x.Number == number, ct);
+
+    public async Task AddAsync(SerialNumber serial, CancellationToken ct) =>
+        await _db.SerialNumbers.AddAsync(serial, ct);
+
+    public Task SaveChangesAsync(CancellationToken ct) => _db.SaveChangesAsync(ct);
+}
