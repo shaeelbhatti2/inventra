@@ -5,6 +5,7 @@ using Inventra.Application.CycleCounts;
 using Inventra.Application.Products;
 using Inventra.Application.PurchaseOrders;
 using Inventra.Application.SalesOrders;
+using Inventra.Application.SerialNumbers;
 using Inventra.Application.Transfers;
 using Inventra.Application.Warehouses;
 using Inventra.Application.StockLedger;
@@ -29,6 +30,7 @@ public static class DependencyInjection
         services.AddScoped<TransferService>();
         services.AddScoped<CycleCountService>();
         services.AddScoped<BatchLotService>();
+        services.AddScoped<SerialNumberService>();
         return services;
     }
 }
