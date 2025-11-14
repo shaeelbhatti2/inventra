@@ -29,6 +29,7 @@ public static class DependencyInjection
         services.AddScoped<ICycleCountRepository, CycleCountRepository>();
         services.AddScoped<IBatchLotRepository, BatchLotRepository>();
         services.AddScoped<ISerialNumberRepository, SerialNumberRepository>();
+        services.AddScoped<IAlertRepository, AlertRepository>();
 
         return services;
     }

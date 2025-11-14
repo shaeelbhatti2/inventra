@@ -1,4 +1,5 @@
 using Inventra.Application.Abstractions;
+using Inventra.Application.Alerts;
 using Inventra.Application.Auth;
 using Inventra.Application.BatchLots;
 using Inventra.Application.CycleCounts;
@@ -31,6 +32,7 @@ public static class DependencyInjection
         services.AddScoped<CycleCountService>();
         services.AddScoped<BatchLotService>();
         services.AddScoped<SerialNumberService>();
+        services.AddScoped<AlertService>();
         return services;
     }
 }

@@ -70,3 +70,21 @@ public sealed class SerialNumberRepository : ISerialNumberRepository
 
     public Task SaveChangesAsync(CancellationToken ct) => _db.SaveChangesAsync(ct);
 }
+
+public sealed class AlertRepository : IAlertRepository
+{
+    private readonly InventraDbContext _db;
+
+    public AlertRepository(InventraDbContext db) => _db = db;
+
+    public Task<bool> ExistsAsync(Guid organizationId, string alertKey, CancellationToken ct) =>
+        _db.Set<StockAlert>().AnyAsync(x => x.OrganizationId == organizationId && x.AlertKey == alertKey, ct);
+
+    public async Task AddAsync(StockAlert alert, CancellationToken ct) =>
+        await _db.Set<StockAlert>().AddAsync(alert, ct);
+
+    public async Task<IReadOnlyList<StockAlert>> ListOpenAsync(Guid organizationId, CancellationToken ct) =>
+        await _db.Set<StockAlert>().Where(x => x.OrganizationId == organizationId && !x.IsRead).ToListAsync(ct);
+
+    public Task SaveChangesAsync(CancellationToken ct) => _db.SaveChangesAsync(ct);
+}
