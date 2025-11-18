@@ -1,0 +1,55 @@
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+}
+
+.page {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 220px;
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 1.5rem 1rem;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.sidebar a {
+    color: #e2e8f0;
+    text-decoration: none;
+}
+
+.content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.widget {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.5rem;
+    text-align: left;
+}
