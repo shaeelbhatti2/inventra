@@ -1,0 +1,40 @@
+@page "/dashboard"
+@inject Inventra.Application.Alerts.AlertService Alerts
+
+<h2>Dashboard</h2>
+
+<section class="widgets">
+    <div class="widget">
+        <h3>Low stock alerts</h3>
+        @if (_alerts.Count == 0)
+        {
+            <p>No open alerts.</p>
+        }
+        else
+        {
+            <ul>
+                @foreach (var alert in _alerts)
+                {
+                    <li>@alert.Message</li>
+                }
+            </ul>
+        }
+    </div>
+    <div class="widget">
+        <h3>Pending picks</h3>
+        <p>Pick queue loads from sales orders API.</p>
+    </div>
+    <div class="widget">
+        <h3>Open POs</h3>
+        <p>Purchase orders awaiting receipt show here.</p>
+    </div>
+</section>
+
+@code {
+    private IReadOnlyList<Inventra.Application.Abstractions.StockAlert> _alerts = Array.Empty<Inventra.Application.Abstractions.StockAlert>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _alerts = await Alerts.ListOpenAsync(Guid.Parse("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"), CancellationToken.None);
+    }
+}
